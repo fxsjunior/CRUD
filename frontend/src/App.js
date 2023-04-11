@@ -18,7 +18,7 @@ function App() {
       setUsers(res.data.sort((a, b) => (a.nome > b.nome ? 1 : -1)))
     } catch (error) {
       toast.error(error)
-      
+
     }
   }
 
@@ -30,8 +30,8 @@ function App() {
     <>
       <Container>
         <Title>Usuários</Title>
-        <Form />
-        <Grid users={users} setUsers={setUsers} setOnEdit={setOnEdit}/>
+        <Form onEdit={onEdit} setOnEdit={setOnEdit} getUsers={getUsers} />
+        <Grid users={users} setUsers={setUsers} setOnEdit={setOnEdit} />
         <ToastContainer autoClose={2500} position={toast.POSITION.BOTTOM_LEFT} />
         <GlobalStyle />
       </Container>
