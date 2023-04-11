@@ -5,7 +5,7 @@ import axios from 'axios';
 import { toast } from "react-toastify";
 
 
-const Form = ({ onEdit, setOnEdit, getUsers }) => {
+const Form = ({ getUsers, onEdit, setOnEdit }) => {
     const ref = useRef();
 
     useEffect(() => {
@@ -17,12 +17,12 @@ const Form = ({ onEdit, setOnEdit, getUsers }) => {
             user.fone.value = onEdit.fone;
             user.data_nascimento.value = onEdit.data_nascimento;
         }
-    }, [onEdit])
+    }, [onEdit]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const user = ref.current
+        const user = ref.current;
 
         if (
             !user.nome.value ||
@@ -30,7 +30,7 @@ const Form = ({ onEdit, setOnEdit, getUsers }) => {
             !user.fone.value ||
             !user.data_nascimento.value
         ) {
-            return toast.warn("Preencha todos os campos!")
+            return toast.warn("Preencha todos os campos!");
         }
 
         if (onEdit) {
@@ -39,21 +39,22 @@ const Form = ({ onEdit, setOnEdit, getUsers }) => {
                     nome: user.nome.value,
                     email: user.email.value,
                     fone: user.fone.value,
-                    data_nascimento: user.data_nascimento.value
+                    data_nascimento: user.data_nascimento.value,
                 })
                 .then(({ data }) => toast.success(data))
-                .catch(({ data }) => toast.error(data))
+                .catch(({ data }) => toast.error(data));
         } else {
             await axios
                 .post("http://localhost:8800", {
                     nome: user.nome.value,
                     email: user.email.value,
                     fone: user.fone.value,
-                    data_nascimento: user.data_nascimento.value
+                    data_nascimento: user.data_nascimento.value,
                 })
                 .then(({ data }) => toast.success(data))
-                .catch(({ data }) => toast.error(data))
+                .catch(({ data }) => toast.error(data));
         }
+
         user.nome.value = "";
         user.email.value = "";
         user.fone.value = "";
@@ -61,7 +62,8 @@ const Form = ({ onEdit, setOnEdit, getUsers }) => {
 
         setOnEdit(null);
         getUsers();
-    }
+    };
+
 
     return (
 
@@ -72,7 +74,7 @@ const Form = ({ onEdit, setOnEdit, getUsers }) => {
             </InputArea>
             <InputArea>
                 <Label>E-mail</Label>
-                <Input name="email" type='email' />
+                <Input name="email" type="email" />
             </InputArea>
             <InputArea>
                 <Label>Telefone</Label>

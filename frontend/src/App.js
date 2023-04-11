@@ -32,9 +32,9 @@ function App() {
         <Title>Usuários</Title>
         <Form onEdit={onEdit} setOnEdit={setOnEdit} getUsers={getUsers} />
         <Grid users={users} setUsers={setUsers} setOnEdit={setOnEdit} />
-        <ToastContainer autoClose={2500} position={toast.POSITION.BOTTOM_LEFT} />
-        <GlobalStyle />
       </Container>
+      <ToastContainer autoClose={2500} position={toast.POSITION.BOTTOM_LEFT} />
+      <GlobalStyle />
     </>
   );
 }
